@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { ViewTransitionLink } from "../ViewTransitionLink/ViewTransitionLink";
 
 interface Item {
   id: string;
@@ -38,11 +39,13 @@ const FilteredItems = ({ items, selectedFilter }: Props) => {
           className="item transition-all duration-300 ease-in-out p-4 bg-white shadow-lg rounded-lg flex flex-col items-center justify-center"
           style={{ viewTransitionName: `item-${item.id}` }}
         >
-          <div
-            className="w-20 h-20 mb-2 rounded-md"
-            style={{ backgroundColor: item.color }} // Render the color box
-          ></div>
-          <h3 className="text-lg font-semibold">{item.name}</h3>
+          <ViewTransitionLink href={`item/${item.id}`}>
+            <div
+              className="w-20 h-20 mb-2 rounded-md"
+              style={{ backgroundColor: item.color }} // Render the color box
+            ></div>
+            <h3 className="text-lg font-semibold">{item.name}</h3>
+          </ViewTransitionLink>
         </div>
       ))}
     </div>
