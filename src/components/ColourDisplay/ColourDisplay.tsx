@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 
 interface Item {
   id: string;
@@ -9,40 +9,17 @@ interface Item {
 }
 
 interface Props {
-  id: string;
+  id: string; // The id string to filter and display the color
 }
 
+const items: Item[] = [
+  { id: "1", name: "Red", color: "#FF0000" },
+  { id: "2", name: "Blue", color: "#0000FF" },
+  { id: "3", name: "Green", color: "#00FF00" },
+];
+
 export const ColourDisplay = ({ id }: Props) => {
-  const items: Item[] = [
-    { id: "1", name: "Red", color: "#FF0000" },
-    { id: "2", name: "Blue", color: "#0000FF" },
-    { id: "3", name: "Green", color: "#00FF00" },
-  ];
-
   const selectedItem = items.find((item) => item.id === id);
-
-  useEffect(() => {
-    const handlePageReveal = async (e: any) => {
-      if (e.viewTransition) {
-        const element = document.querySelector(".color-box") as HTMLElement;
-
-        if (element) {
-          element.style.viewTransitionName = `item-${id}`;
-        }
-
-        await e.viewTransition.ready;
-        if (element) {
-          element.style.viewTransitionName = "";
-        }
-      }
-    };
-
-    window.addEventListener("pagereveal", handlePageReveal);
-
-    return () => {
-      window.removeEventListener("pagereveal", handlePageReveal);
-    };
-  }, [id]);
 
   if (!selectedItem) {
     return (
@@ -55,9 +32,10 @@ export const ColourDisplay = ({ id }: Props) => {
   return (
     <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center justify-center">
       <div
-        className="color-box w-56 h-56 mb-4 rounded-md"
+        className="w-56 h-56 mb-4 rounded-md"
         style={{
           backgroundColor: selectedItem.color,
+          viewTransitionName: `item-${id}`,
         }}
       ></div>
       <h3 className="text-lg text-gray-800 font-semibold">
