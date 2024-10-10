@@ -36,6 +36,7 @@ const FilteredItems = ({ items, selectedFilter }: Props) => {
           key={item.id}
           data-item={item.id}
           className="item transition-all duration-300 ease-in-out p-4 bg-white shadow-lg rounded-lg flex flex-col items-center justify-center"
+          style={{ viewTransitionName: `item-${item.id}` }}
         >
           <div
             className="w-20 h-20 mb-2 rounded-md"
