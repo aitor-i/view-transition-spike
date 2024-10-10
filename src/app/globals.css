@@ -26,6 +26,12 @@ body {
   }
 }
 
+/* Customize the default animation behavior */
+::view-transition-group(root) {
+  animation-duration: 0.9s;
+}
+
+
 @keyframes grow-x {
   from {
     transform: scaleX(0);
@@ -50,9 +56,9 @@ body {
 }
 
 ::view-transition-old() {
-  /* animation: 0.25s linear both shrink-x; */
+  animation: 0.25s linear both shrink-x;
 }
 
 ::view-transition-new() {
-  /* animation: 0.25s 0.25s linear both grow-x; */
+  animation: 0.25s 0.25s linear both grow-x;
 }
