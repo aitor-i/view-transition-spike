@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useTransitionRouter } from "@/hooks/useTransitionRouter/useTansitionRouter";
 import React, { ReactNode } from "react";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const ViewTransitionLink = ({ href, children }: Props) => {
-  const router = useRouter();
+  const router = useTransitionRouter();
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
